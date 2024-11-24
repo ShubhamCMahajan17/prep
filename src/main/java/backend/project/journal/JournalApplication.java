@@ -10,12 +10,11 @@ import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.beans.BeanProperty;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {MongoAutoConfiguration.class})
 
 public class JournalApplication {
 
@@ -27,5 +26,10 @@ public class JournalApplication {
     @Bean
     public PlatformTransactionManager enableTransaction(MongoDatabaseFactory mongoDatabaseFactory) {
         return new MongoTransactionManager(mongoDatabaseFactory);
+    }
+
+    @Bean
+    public RestTemplate enableRestTemplate() {
+        return new RestTemplate();
     }
 }
